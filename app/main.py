@@ -49,5 +49,8 @@ def read_messages(
 ):
     if cron_expression:
         normalized = normalize_cron(cron_expression)
-        return db.query(models.Message).filter(models.Message.cron_expression == normalized).all()
+        print(f"🔎 Buscando por cron_expression: '{normalized}'")
+        result = db.query(models.Message).filter(models.Message.cron_expression == normalized).all()
+        print(f"📦 Encontrado: {len(result)} registro(s)")
+        return result
     return crud.get_messages(db)

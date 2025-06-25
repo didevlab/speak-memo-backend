@@ -126,8 +126,16 @@ seed_data = [
 
 def run():
     db = SessionLocal()
-    for item in seed_data:
-        speak_memo = Message(**item)
-        db.add(speak_memo)
-    db.commit()
-    db.close()
+    try:
+        for item in seed_data:
+            exists = db.query(Message).filter(Message.cron_expression == item["cron_expression"]).first()
+            if not exists:
+                speak_memo = Message(**item)
+                db.add(speak_memo)
+        db.commit()
+        print("✅ Seed executado com sucesso.")
+    except Exception as e:
+        print(f"❌ Erro ao rodar seed: {e}")
+        db.rollback()
+    finally:
+        db.close()
