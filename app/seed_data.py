@@ -3,6 +3,78 @@ from app.models import Message
 
 seed_data = [
     {
+        "text": "Good morning!",
+        "pronunciation": "Gud mórnin",
+        "meaning": "Bom dia!",
+        "reply_text": "Good morning!",
+        "reply_pronunciation": "Gud mórnin",
+        "reply_meaning": "Bom dia!",
+        "type": "greeting",
+        "context": "morning",
+        "routine": "daily-routine",
+        "cron_expression": "0 9 * * *"
+    },
+    {
+        "text": "How are you today?",
+        "pronunciation": "Ráu ar iú tchudêi?",
+        "meaning": "Como você está hoje?",
+        "reply_text": "I'm doing well, thanks! And you?",
+        "reply_pronunciation": "Aim duin uél, ténks! Éndi iú?",
+        "reply_meaning": "Estou bem, obrigado! E você?",
+        "type": "question",
+        "context": "morning",
+        "routine": "daily-routine",
+        "cron_expression": "30 9 * * *"
+    },
+    {
+        "text": "Where do you live?",
+        "pronunciation": "Uér dú iú lêv?",
+        "meaning": "Onde você mora?",
+        "reply_text": "I live in Brazil.",
+        "reply_pronunciation": "Ai lêv in Brazil",
+        "reply_meaning": "Eu moro no Brasil.",
+        "type": "question",
+        "context": "morning",
+        "routine": "daily-routine",
+        "cron_expression": "0 10 * * *"
+    },
+    {
+        "text": "What do you do for a living?",
+        "pronunciation": "Uót dú iú dú fór a lívin?",
+        "meaning": "O que você faz da vida? / Qual sua profissão?",
+        "reply_text": "I'm a DevOps engineer.",
+        "reply_pronunciation": "Aim a dévopis endjiníer",
+        "reply_meaning": "Eu sou engenheiro DevOps.",
+        "type": "question",
+        "context": "morning",
+        "routine": "daily-routine",
+        "cron_expression": "30 10 * * *"
+    },
+    {
+        "text": "Which company do you work for?",
+        "pronunciation": "Uítch cómpani dú iú uârk fór?",
+        "meaning": "Em qual empresa você trabalha?",
+        "reply_text": "I work at [nome da empresa].",
+        "reply_pronunciation": "Ai uârk ét [nome da empresa]",
+        "reply_meaning": "Eu trabalho na [nome da empresa].",
+        "type": "question",
+        "context": "morning",
+        "routine": "daily-routine",
+        "cron_expression": "0 11 * * *"
+    },
+    {
+        "text": "How long have you been working there?",
+        "pronunciation": "Ráu lóng rév iú biin uârkin dér?",
+        "meaning": "Há quanto tempo você trabalha lá?",
+        "reply_text": "I’ve been working there for [x] years.",
+        "reply_pronunciation": "Áiv biin uârkin dér fór [x] íers",
+        "reply_meaning": "Estou trabalhando lá há [x] anos.",
+        "type": "question",
+        "context": "morning",
+        "routine": "daily-routine",
+        "cron_expression": "30 11 * * *"
+    },
+    {
         "text": "Did you have lunch?",
         "pronunciation": "Díd iú rév lântch?",
         "meaning": "Você almoçou?",
