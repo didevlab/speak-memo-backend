@@ -3,7 +3,7 @@
 app: speak-memo-backend
 component: backend
 core: speak-memo
-version: 1.0.2
+version: 1.0.3
 
 ##############################
 # Definition of the Secret
