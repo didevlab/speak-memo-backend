@@ -1,0 +1,25 @@
+### Delete message
+DELETE http://192.168.15.36:8000/messages/1
+
+### Teste de criação de mensagem
+POST http://192.168.15.36:8000/messages/
+Content-Type: application/json
+
+{
+  "text": "Hello Diego, good morning!",
+  "pronunciation": "Rélou Diêigo, gud mórnin",
+  "meaning": "Bom dia!",
+  "reply_text": "Good morning!",
+  "reply_pronunciation": "Gud mórnin",
+  "reply_meaning": "Bom dia!",
+  "type": "greeting",
+  "context": "morning",
+  "routine": "daily-routine",
+  "cron_expression": "30 9 * * *"
+}
+
+### GET /messages/
+Get http://192.168.15.36:8000/messages/
+
+### GET /messages/?cron_expression=09:30
+Get http://192.168.15.36:8000/messages/?cron_expression=30 9 * * *

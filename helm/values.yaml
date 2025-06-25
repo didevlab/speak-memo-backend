@@ -1,0 +1,76 @@
+##############################
+# App Definition
+app: speak-memo-backend
+component: backend
+core: speak-memo
+version: 1.0.0
+
+##############################
+# Definition of the Secret
+secret:
+  - name: speak-memo
+    type: Opaque
+    data:
+      POSTGRES_USER: c3BlYWt1c2Vy
+      POSTGRES_PASSWORD: RDFTcGVha01lbW9EQjIwMjU=
+      DATABASE_URL: cG9zdGdyZXNxbDovL3NwZWFrdXNlcjpEMVNwZWFrTWVtb0RCMjAyNUBwZy1zcGVhay1tZW1vLXJ3LnNwZWFrLW1lbW8uc3ZjLmNsdXN0ZXIubG9jYWw6NTQzMi9zcGVha21lbW8=
+      
+##############################
+# Definition of the Deployment
+deployment:
+  replicas: 1
+  revisionHistoryLimit: 3
+  sendlogs: "true"
+  stack: speak
+  lbtype: internal
+  affinity:
+    - apps: services
+  containers:
+    - name: speak-memo-backend
+      image: ghcr.io/didevlab/
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "50m"
+        limits:
+          memory: "512Mi"
+          cpu: "1"
+      env:
+        - name: TZ
+          value: "America/Sao_Paulo"
+        - name: PORT
+          value: "8000"
+
+        - name: POSTGRES_DB
+          value: "speakmemo"
+        - name: SEED_DB
+          value: "true"
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: s-speak-memo
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: s-speak-memo
+              key: POSTGRES_PASSWORD
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: s-speak-memo
+              key: DATABASE_URL
+
+
+###########################
+# Definition of the Service
+services:
+  - type: ClusterIP
+    selector:
+      app: speak-memo-backend
+      component: backend
+    ports:
+      - name: speak-memo-tcp
+        port: 80
+        targetPort: 8000
+        protocol: TCP
